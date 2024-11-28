@@ -4,11 +4,11 @@ name = "libraw"
 def version():
     from datetime import datetime
     version = "master-{}".format(datetime.now().strftime("%Y%m%d"))
-    #version = "0.20.2"
+    version = "0.21.3"
     return version
 
 variants = [
-    ["platform-linux"]
+    ['platform-linux', 'arch-x86_64']
 ]
 
 @early() # type: ignore
@@ -23,7 +23,8 @@ def build_requires():
     return []
 
 requires = [
-    "jpegturbo-2"
+    "jpeg",
+    "gcc-11"
 ]
 
 build_command = "make -f {root}/Makefile {install}"

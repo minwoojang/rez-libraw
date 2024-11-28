@@ -3,11 +3,11 @@ SHELL := /bin/bash
 
 # Rez variables, setting these to sensible values if we are not building from rez
 REZ_BUILD_PROJECT_VERSION ?= NOT_SET
-REZ_BUILD_INSTALL_PATH ?= /usr/local
+REZ_BUILD_INSTALL_PATH ?= /home/minwoo/packages
 REZ_BUILD_SOURCE_PATH ?= $(shell dirname $(lastword $(abspath $(MAKEFILE_LIST))))
 BUILD_ROOT := $(REZ_BUILD_SOURCE_PATH)/build
 REZ_BUILD_PATH ?= $(BUILD_ROOT)
-REZ_JPEGTURBO_ROOT ?= /usr/local
+REZ_JPEGTURBO_ROOT ?= /cocoa/inhouse/tool/rez-packages/jpeg/3.0.4/platform-linux/arch-x86_64
 
 # Source
 #VERSION ?= $(REZ_BUILD_PROJECT_VERSION)
@@ -18,17 +18,17 @@ REZ_JPEGTURBO_ROOT ?= /usr/local
 TAG ?= $(REZ_BUILD_PROJECT_VERSION)
 REPOSITORY_URL := https://github.com/LibRaw/LibRaw.git
 
-ifneq (,$(findstring master,$(TAG)))
-TAG:=master
-$(warning "Building master branch as TAG contains master")
-else
+# ifneq (,$(findstring master,$(TAG)))
+# TAG:=0.21.3
+# $(warning "Building master branch as TAG contains master")
+# else
 # Warn about building master if no tag is provided
-ifeq "$(TAG)" "NOT_SET"
-$(warning "No tag was specified, main will be built. You can specify a tag: TAG=v2.1.1")
+# ifeq "$(TAG)" "NOT_SET"
+# $(warning "No tag was specified, main will be built. You can specify a tag: TAG=v2.1.1")
+# 
+# endif
+# endif
 TAG:=master
-endif
-endif
-
 # Build time locations
 BUILD_TYPE = Release
 BUILD_DIR = ${REZ_BUILD_PATH}/BUILD/$(BUILD_TYPE)
